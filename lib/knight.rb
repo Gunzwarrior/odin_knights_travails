@@ -14,3 +14,16 @@ knight class
 - display said array to show shortest route
 
 =end
+class Knight
+def initialize(coordinates)
+  @coordinates = coordinates
+  @left_up = nil
+  @left_down = nil
+  @right_up = nil
+  @right_down = nil
+  @up_left = nil
+  @up_right = nil
+  @down_left = nil
+  @down_right = nil
+end
+end
