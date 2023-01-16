@@ -15,15 +15,17 @@ knight class
 
 =end
 class Knight
-def initialize(coordinates)
+def initialize(coordinates, left_up = nil, left_down = nil,
+               right_up = nil, right_down = nil, up_left = nil,
+               up_right = nil, down_left = nil, down_right = nil)
   @coordinates = coordinates
-  @left_up = nil
-  @left_down = nil
-  @right_up = nil
-  @right_down = nil
-  @up_left = nil
-  @up_right = nil
-  @down_left = nil
-  @down_right = nil
+  @left_up = left_up
+  @left_down = left_down
+  @right_up = right_up
+  @right_down = right_down
+  @up_left = up_left
+  @up_right = up_right
+  @down_left = down_left
+  @down_right = down_right
 end
 end
