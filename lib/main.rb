@@ -3,7 +3,7 @@ require_relative 'board'
 board = Board.new
 
 board.build_board
-
 board.build_links
+board.root = board.board[[0,0]]
 
-p board.board[[0,0]].right_up.left_down.coordinates
+board.find_whole_path([2,3])
