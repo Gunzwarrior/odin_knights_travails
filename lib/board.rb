@@ -93,33 +93,30 @@ class Board
   # end
 
 
-  def level_order(coordinates)
+  def level_order(start, coordinates)
     queue = []
-   queue.push(@root)
-   array = []
-   until queue == []
+    queue.push(board[start])
+    array = []
+    until queue == []
       node = queue.shift
       next if node.nil?
 
-     if block_given?
-       yield node.data
-      else
-       array.push(node)
-       break if node.coordinates == coordinates
-      end
+      array.push(node)
+      break if node.coordinates == coordinates
+
       queue.push(node.left_up, node.left_down,
-                node.right_up, node.right_down,
-                node.up_left, node.up_right,
-                node.down_left, node.down_right)
+                 node.right_up, node.right_down,
+                 node.up_left, node.up_right,
+                 node.down_left, node.down_right)
     end
-   array unless block_given?
+    array
   end
 
-  def find_whole_path(coordinates)
+  def knight_moves(start, coordinates)
     array = [coordinates]
     pointer = coordinates
-    until array.include?(root.coordinates)
-      array_to_check = level_order(pointer)
+    until array.include?(start)
+      array_to_check = level_order(start, pointer)
       array_to_check.reverse_each do |element|
         if !element.left_up.nil? && element.left_up.coordinates == pointer ||
           !element.left_down.nil? && element.left_down.coordinates == pointer ||

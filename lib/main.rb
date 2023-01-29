@@ -6,4 +6,4 @@ board.build_board
 board.build_links
 board.root = board.board[[0,0]]
 
-board.find_whole_path([2,3])
+board.knight_moves([1,2],[2,3])
