@@ -11,13 +11,20 @@ class Board
   end
 
   def build_board
-    board = []
+    board = {}
     8.times do |i|
       8.times do |j|
-        board.push(Knight.new([i, j]))
+        board[[i, j]] = Knight.new([i, j])
       end
     end
     p board
+    p board.length
+    p board[[1,1]]
+    p board[8]
+    p board[63]
+  end
+
+  def build_links
   end
 
   def build_path(root, visited = [])
