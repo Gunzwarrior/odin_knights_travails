@@ -10,6 +10,16 @@ class Board
     @root = build_path(root)
   end
 
+  def build_board
+    board = []
+    8.times do |i|
+      8.times do |j|
+        board.push(Knight.new([i, j]))
+      end
+    end
+    p board
+  end
+
   def build_path(root, visited = [])
     return nil if possible?(root, visited).nil?
 
