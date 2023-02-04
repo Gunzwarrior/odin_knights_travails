@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'knight'
 
+# Class representing a chessboard and setting up the knight's path
 class Board
-
   attr_accessor :width, :height, :board, :root
+
   def initialize(root = [0, 0], width = 8, height = 8)
     @width = width
     @height = height
@@ -73,26 +76,6 @@ class Board
     end
   end
 
-  # def pre_order(root = @root, array = [], &block)
-  #   return if root.nil?
-
-  #   if block.nil?
-  #     array.push root.coordinates
-  #   else
-  #     block.call root.coordinates
-  #   end
-  #   pre_order(root.left_up, array, &block)
-  #   pre_order(root.left_down, array, &block)
-  #   pre_order(root.right_up, array, &block)
-  #   pre_order(root.right_down, array, &block)
-  #   pre_order(root.up_left, array, &block)
-  #   pre_order(root.up_right, array, &block)
-  #   pre_order(root.down_left, array, &block)
-  #   pre_order(root.down_right, array, &block)
-  #   array if block.nil?
-  # end
-
-
   def level_order(start, coordinates)
     queue = []
     queue.push(board[start])
@@ -118,21 +101,19 @@ class Board
     until array.include?(start)
       array_to_check = level_order(start, pointer)
       array_to_check.reverse_each do |element|
-        if !element.left_up.nil? && element.left_up.coordinates == pointer ||
-          !element.left_down.nil? && element.left_down.coordinates == pointer ||
-          !element.right_up.nil? && element.right_up.coordinates == pointer ||
-          !element.right_down.nil? && element.right_down.coordinates == pointer ||
-          !element.up_left.nil? && element.up_left.coordinates == pointer ||
-          !element.up_right.nil? && element.up_right.coordinates == pointer ||
-          !element.down_left.nil? && element.down_left.coordinates == pointer ||
-          !element.down_right.nil? && element.down_right.coordinates == pointer
-          array.push(element.coordinates)
-          pointer = element.coordinates
-        end
+        next unless !element.left_up.nil? && element.left_up.coordinates == pointer ||
+                    !element.left_down.nil? && element.left_down.coordinates == pointer ||
+                    !element.right_up.nil? && element.right_up.coordinates == pointer ||
+                    !element.right_down.nil? && element.right_down.coordinates == pointer ||
+                    !element.up_left.nil? && element.up_left.coordinates == pointer ||
+                    !element.up_right.nil? && element.up_right.coordinates == pointer ||
+                    !element.down_left.nil? && element.down_left.coordinates == pointer ||
+                    !element.down_right.nil? && element.down_right.coordinates == pointer
+
+        array.push(element.coordinates)
+        pointer = element.coordinates
       end
     end
     p array.reverse
   end
-
-
 end
